@@ -1,0 +1,42 @@
+﻿@using ContactManager.ViewModel
+@model ContactViewModel
+@{
+    ViewData["Title"] = "Create Contact";
+}
+
+<div class="container shadow p-5">
+    <div class="row  pb-2">
+        <h1>Add Contact</h1>
+    </div>
+
+    <form method="post" class="form-floating">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" asp-for="FirstName" placeholder="Enter first name" />
+            <label asp-for="FirstName">First Name</label>
+            <span asp-validation-for="FirstName" class="alert-danger"></span>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" asp-for="LastName" placeholder="Enter last name" />
+            <label asp-for="LastName">Last Name</label>
+            <span asp-validation-for="LastName" class="alert-danger"></span>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" asp-for="Email" placeholder="Enter email" />
+            <label asp-for="Email">Email</label>
+            <span asp-validation-for="Email" class="alert-danger"></span>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="tel" class="form-control" asp-for="PhoneNumber" placeholder="Enter phone number" />
+            <label asp-for="PhoneNumber">Phone Number</label>
+            <span asp-validation-for="PhoneNumber" class="alert-danger"></span>
+        </div>
+        <div class="form-floating mb-3">
+            <select class="form-select single-select dropdown" asp-for="CategoryId" asp-items="Model.Category"></select>
+            <label asp-for="CategoryId">Category</label>
+            <span asp-validation-for="CategoryId" class="alert-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a asp-controller="Contact" asp-action="Index" class="btn btn-primary">Back To List</a>
+    </form>
+</div>

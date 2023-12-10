@@ -1,0 +1,46 @@
+﻿@using ContactManager.ViewModel
+@model List<ContactListViewModel>
+
+@{
+    ViewData["Title"] = "Contact List";
+}
+
+<div class="container shadow p-5" style="border-radius: 20px;">
+    @if (TempData["SuccessMsg"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMsg"]
+        </div>
+    }
+    <h1 class="text-center p-5 bg-dark text-light">Contact Manager</h1>
+
+    <div class="mb-3">
+        <a asp-controller="Contact" asp-action="Create" class="btn btn-primary">Add Contact</a>
+    </div>
+
+    <div class="d-none d-md-block fw-bold mb-2">
+        <div class="row">
+            <div class="col-md-2">First Name</div>
+            <div class="col-md-2">Last Name</div>
+            <div class="col-md-3">Email</div>
+            <div class="col-md-2">Phone Number</div>
+            <div class="col-md-3">Category</div>
+        </div>
+    </div>
+
+    <div class="list-group">
+        @foreach (var item in Model)
+        {
+            <form asp-controller="Contact" asp-action="Details" asp-route-id="@item.Id" method="get" class="list-group-item list-group-item-action">
+                <div class="row align-items-center flex-column flex-md-row">
+                    <div class="col-12 col-md-2"><span class="d-md-none fw-bold">First Name: </span>@item.FirstName</div>
+                    <div class="col-12 col-md-2"><span class="d-md-none fw-bold">Last Name: </span>@item.LastName</div>
+                    <div class="col-12 col-md-3"><span class="d-md-none fw-bold">Email: </span>@item.Email</div>
+                    <div class="col-12 col-md-2"><span class="d-md-none fw-bold">Phone Number: </span>@item.PhoneNumber</div>
+                    <div class="col-12 col-md-3"><span class="d-md-none fw-bold">Category: </span>@item.CategoryName</div>
+                </div>
+                <button type="submit" class="stretched-link invisible-button"></button>
+            </form>
+        }
+    </div>
+</div>
